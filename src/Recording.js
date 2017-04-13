@@ -31,11 +31,11 @@ export default class Recording extends Component {
         let icon = '';
         
         if (this.props.type === "Book") {
-            icon = <Icon name="md-book" size={40} color="#4ca2cd" />;
+            icon = <Icon name="md-book" size={40} color="#1976D2" />;
         } else if ( this.props.type === "Song") {
-            icon = <Icon name="md-musical-notes" size={40} color="#4ca2cd" />;
+            icon = <Icon name="md-musical-notes" size={40} color="#1976D2" />;
         } else {
-            icon = <Icon name="md-mic" size={40} color="#4ca2cd" />;
+            icon = <Icon name="md-mic" size={40} color="#1976D2" />;
         }
         
         return (

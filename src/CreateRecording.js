@@ -58,10 +58,7 @@ export default class CreateRecording extends Component {
 
         this.timer = setInterval(() => {
             const time = this.state.currentTime + 1
-            this.setState({currentTime: time})
-            if (time === 60) {
-                this.stopRecording()
-            }
+            this.setState({currentTime: time});
         }, 1000)
     }
 
@@ -83,7 +80,7 @@ export default class CreateRecording extends Component {
         let formattedName = this.state.name.replace(/\s+/g, '-').toLowerCase();
         let fullAudioPath = this.audioPath + '/' + formattedName + '.acc';
         
-        if (name && type && fullAudioPath) {
+        if (name && type) {
             realm.write(() => {
                 realm.create('Recording', {
                     id: 1,
@@ -109,6 +106,7 @@ export default class CreateRecording extends Component {
     }
 
     render() {
+        const currentTime = this.state.currentTime;
         return (
             <View style={styles.create}>
                 <TextInput 
@@ -118,7 +116,9 @@ export default class CreateRecording extends Component {
                 />
                 {this._renderButton("RECORD", this._onRecord)}
                 {this._renderButton("STOP", this._onStop)}
-                <Text>{this.state.currentTime}s</Text>
+                {currentTime > 0 &&
+                    <Text>{this.state.currentTime}s</Text>
+                }
                 <TouchableOpacity 
                     onPress={this._saveRecording}
                     style={styles.button}
@@ -132,9 +132,12 @@ export default class CreateRecording extends Component {
 
 const styles = StyleSheet.create({
     input: {
-        borderColor: '#CECECE',
+        backgroundColor: '#EEEEEE',
+        borderColor: '#CCCCCC',
+        borderRadius: 4,
         borderWidth: 1,
         height: 40,
+        marginBottom: 15,
         padding: 10,
     },
     create: {
@@ -142,7 +145,7 @@ const styles = StyleSheet.create({
         paddingTop: 84,
     },
     button: {
-        backgroundColor: 'blue',
+        backgroundColor: '#1976D2',
         borderRadius: 4,
         marginTop: 15,
         padding: 15
@@ -151,5 +154,5 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 16,
         textAlign: 'center'
-    }
+    },
 });

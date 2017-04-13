@@ -43,14 +43,14 @@ export default class Main extends Component {
     return (
       <View style={styles.container}>
         <RecordingList />
-        <ActionButton buttonColor="#4ca2cd">
-          <ActionButton.Item buttonColor='#9b59b6' title="Speaking" onPress={() => this._onForward(generalType)}>
+        <ActionButton buttonColor="#1976D2">
+          <ActionButton.Item buttonColor='#42A5F5' title="Speaking" onPress={() => this._onForward(generalType)}>
             <Icon name="md-mic" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#9b59b6' title="Book" onPress={() => this._onForward(bookType)}>
+          <ActionButton.Item buttonColor='#42A5F5' title="Book" onPress={() => this._onForward(bookType)}>
             <Icon name="md-book" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#9b59b6' title="Song" onPress={() => this._onForward(songType)}>
+          <ActionButton.Item buttonColor='#42A5F5' title="Song" onPress={() => this._onForward(songType)}>
             <Icon name="md-musical-notes" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
