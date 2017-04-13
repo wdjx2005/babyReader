@@ -19,6 +19,8 @@ import {
 
 import realm from './realm';
 
+import PlayButton from './PlayButton.js';
+
 export default class CreateRecording extends Component {  
     constructor(props) {
         super(props);
@@ -28,7 +30,7 @@ export default class CreateRecording extends Component {
             isFinishedRecording: false,
             currentTime: 0,
             audioLength: 0,
-            name: 'Title',
+            name: '',
         };
 
         this.audioPath = AudioUtils.DocumentDirectoryPath;
@@ -106,25 +108,39 @@ export default class CreateRecording extends Component {
     }
 
     render() {
-        const currentTime = this.state.currentTime;
+        const {
+            isRecording,
+            isFinishedRecording,
+            currentTime
+        } = this.state;
+
         return (
             <View style={styles.create}>
                 <TextInput 
                     style={styles.input}
                     onChangeText={(name) => this.setState({name})}
                     value={this.state.name}
+                    placeholder="Enter a title..."
+                    placeholderTextColor="#fff"
                 />
-                {this._renderButton("RECORD", this._onRecord)}
-                {this._renderButton("STOP", this._onStop)}
+                <PlayButton 
+                    iconText={isRecording ? 'Stop Recording' : 'Start Recording'}
+                    iconColor={isRecording ? 'white' : 'red'}
+                    iconName={isRecording ? 'stop' : 'circle'}
+                    onPressHandler={isRecording ? this._onStop : this._onRecord}
+                />
                 {currentTime > 0 &&
-                    <Text>{this.state.currentTime}s</Text>
+                    <Text style={styles.time}>{this.state.currentTime}s</Text>
                 }
-                <TouchableOpacity 
-                    onPress={this._saveRecording}
-                    style={styles.button}
-                >
-                    <Text style={styles.buttonText}>Save Recording</Text>
-                </TouchableOpacity>
+                
+                {isFinishedRecording &&
+                    <TouchableOpacity 
+                        onPress={this._saveRecording}
+                        style={styles.button}
+                    >
+                        <Text style={styles.buttonText}>Save Recording</Text>
+                    </TouchableOpacity>
+                }
             </View>
         );
     }
@@ -132,15 +148,18 @@ export default class CreateRecording extends Component {
 
 const styles = StyleSheet.create({
     input: {
-        backgroundColor: '#FEFEFE',
-        borderColor: '#CCCCCC',
+        backgroundColor: '#455A64',
+        borderColor: '#78909C',
         borderRadius: 4,
         borderWidth: 1,
+        color: '#FFFFFF',
         height: 40,
         marginBottom: 15,
         padding: 10,
     },
     create: {
+        backgroundColor: '#263238',
+        height: '100%',
         padding: 20,
         paddingTop: 84,
     },
@@ -155,4 +174,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center'
     },
+    time: {
+        color: '#FFFFFF',
+        fontSize: 32,
+        marginBottom: 30,
+        textAlign: 'center'
+    }
 });
