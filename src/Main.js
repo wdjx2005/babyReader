@@ -43,7 +43,7 @@ export default class Main extends Component {
     return (
       <View style={styles.container}>
         <RecordingList />
-        <ActionButton buttonColor="rgba(231,76,60,1)">
+        <ActionButton buttonColor="#4ca2cd">
           <ActionButton.Item buttonColor='#9b59b6' title="Speaking" onPress={() => this._onForward(generalType)}>
             <Icon name="md-mic" style={styles.actionButtonIcon} />
           </ActionButton.Item>
@@ -62,7 +62,7 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#fff',
     padding: 20,
     paddingBottom: 30,
     paddingTop: 30,

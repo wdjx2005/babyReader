@@ -6,6 +6,7 @@ import {
     StyleSheet,
     Text,
     TextInput,
+    TouchableOpacity,
     TouchableHighlight,
     View
 } from 'react-native';
@@ -118,10 +119,12 @@ export default class CreateRecording extends Component {
                 {this._renderButton("RECORD", this._onRecord)}
                 {this._renderButton("STOP", this._onStop)}
                 <Text>{this.state.currentTime}s</Text>
-                <Button
+                <TouchableOpacity 
                     onPress={this._saveRecording}
-                    title="Save"
-                />
+                    style={styles.button}
+                >
+                    <Text style={styles.buttonText}>Save Recording</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -138,4 +141,15 @@ const styles = StyleSheet.create({
         padding: 20,
         paddingTop: 84,
     },
+    button: {
+        backgroundColor: 'blue',
+        borderRadius: 4,
+        marginTop: 15,
+        padding: 15
+    },
+    buttonText: {
+        color: '#FFFFFF',
+        fontSize: 16,
+        textAlign: 'center'
+    }
 });

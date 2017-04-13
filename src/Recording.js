@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
-    TouchableHighlight,
+    TouchableOpacity,
     View
 } from 'react-native';
 
 import { 
     AudioPlayer, 
 } from 'react-native-audio-player-recorder'
+
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class Recording extends Component {
     constructor(props) {
@@ -26,10 +28,21 @@ export default class Recording extends Component {
     }
 
     render() {
+        let icon = '';
+        
+        if (this.props.type === "Book") {
+            icon = <Icon name="md-book" size={40} color="#4ca2cd" />;
+        } else if ( this.props.type === "Song") {
+            icon = <Icon name="md-musical-notes" size={40} color="#4ca2cd" />;
+        } else {
+            icon = <Icon name="md-mic" size={40} color="#4ca2cd" />;
+        }
+        
         return (
-            <TouchableHighlight  style={styles.recording} onPress={this._onPlay}>
-                <Text>{this.props.type} - {this.props.name}</Text>
-            </TouchableHighlight>
+            <TouchableOpacity  style={styles.recording} onPress={this._onPlay}>
+                {icon}
+                <Text>{this.props.name}</Text>
+            </TouchableOpacity>
         );
     }
 }
@@ -37,7 +50,7 @@ export default class Recording extends Component {
 const styles = StyleSheet.create({
     recording: {
         alignItems: 'center',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#EEE',
         borderRadius: 7,
         height: 100,
         marginBottom: 10,
