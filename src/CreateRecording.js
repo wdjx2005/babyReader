@@ -132,7 +132,7 @@ export default class CreateRecording extends Component {
 
 const styles = StyleSheet.create({
     input: {
-        backgroundColor: '#EEEEEE',
+        backgroundColor: '#FEFEFE',
         borderColor: '#CCCCCC',
         borderRadius: 4,
         borderWidth: 1,

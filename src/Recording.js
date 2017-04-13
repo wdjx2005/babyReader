@@ -41,7 +41,7 @@ export default class Recording extends Component {
         return (
             <TouchableOpacity  style={styles.recording} onPress={this._onPlay}>
                 {icon}
-                <Text>{this.props.name}</Text>
+                <Text style={styles.recordingText}>{this.props.name}</Text>
             </TouchableOpacity>
         );
     }
@@ -57,4 +57,7 @@ const styles = StyleSheet.create({
         padding: 15,
         width: '48%',
     },
+    recordingText: {
+        textAlign: 'center'
+    }
 });
