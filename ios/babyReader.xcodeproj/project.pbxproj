@@ -36,6 +36,7 @@
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* babyReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* babyReaderTests.m */; };
 		3BD0A3D9A50C4EE1BC1FC6C8 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF699BC270024C36B791A9B4 /* Entypo.ttf */; };
+		474068CD1EAD8F2000435AAF /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 474068C91EAD8F0500435AAF /* libReactNativeNavigation.a */; };
 		4740AA5A1E9B03E5007C5C73 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4740AA501E9B03E5007C5C73 /* Entypo.ttf */; };
 		4740AA5B1E9B03E5007C5C73 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4740AA511E9B03E5007C5C73 /* EvilIcons.ttf */; };
 		4740AA5C1E9B03E5007C5C73 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4740AA521E9B03E5007C5C73 /* FontAwesome.ttf */; };
@@ -226,6 +227,13 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
+		474068C81EAD8F0500435AAF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 474068AA1EAD8F0500435AAF /* ReactNativeNavigation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
+			remoteInfo = ReactNativeNavigation;
+		};
 		4776D5081E9F1AA800C6EBC5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 00CFDCA622B6410A9AC77D99 /* RealmReact.xcodeproj */;
@@ -311,6 +319,7 @@
 		2D02E4901E0B4A5D006451C7 /* babyReader-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "babyReader-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8CC658915040E894289E66 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		3BEA16FCFABE44AE9F881606 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		474068AA1EAD8F0500435AAF /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		4740AA501E9B03E5007C5C73 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
 		4740AA511E9B03E5007C5C73 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		4740AA521E9B03E5007C5C73 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
@@ -354,6 +363,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				474068CD1EAD8F2000435AAF /* libReactNativeNavigation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -515,6 +525,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		474068AB1EAD8F0500435AAF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				474068C91EAD8F0500435AAF /* libReactNativeNavigation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4740AA4F1E9B01FE007C5C73 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -586,6 +604,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				474068AA1EAD8F0500435AAF /* ReactNativeNavigation.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -816,6 +835,10 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = 474068AB1EAD8F0500435AAF /* Products */;
+					ProjectRef = 474068AA1EAD8F0500435AAF /* ReactNativeNavigation.xcodeproj */;
+				},
+				{
 					ProductGroup = 4776D4EC1E9F1AA800C6EBC5 /* Products */;
 					ProjectRef = 00CFDCA622B6410A9AC77D99 /* RealmReact.xcodeproj */;
 				},
@@ -984,6 +1007,13 @@
 			fileType = archive.ar;
 			path = libjschelpers.a;
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		474068C91EAD8F0500435AAF /* libReactNativeNavigation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeNavigation.a;
+			remoteRef = 474068C81EAD8F0500435AAF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		4776D5091E9F1AA800C6EBC5 /* libRealmReact.a */ = {
@@ -1269,6 +1299,7 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 				);
 				INFOPLIST_FILE = babyReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1293,6 +1324,7 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 				);
 				INFOPLIST_FILE = babyReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

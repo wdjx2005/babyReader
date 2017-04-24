@@ -16,23 +16,13 @@ import {
   NavigatorIOS
 } from 'react-native';
 
+
 import Main from './src/Main.js';
 
 export default class babyReader extends Component {
-  _editRecordings() {
-
-  }
-
   render() {
     return (
-      <NavigatorIOS
-        initialRoute={{
-          component: Main,
-          title: 'Recordings',
-          rightButtonTitle: 'Edit',
-        }}
-        style={{flex: 1}}
-      />
+      <Main />
     )
   }
 }

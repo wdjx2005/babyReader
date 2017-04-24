@@ -14,7 +14,7 @@ export default class RecordingList extends Component {
     render() {
         const recordingQuery = realm.objects('Recording');
         const recordings = recordingQuery.map((recording) => 
-            <Recording name={recording.name} type={recording.type} path={recording.path} />
+            <Recording name={recording.name} type={recording.type} path={recording.path} isEditing={this.props.isEditing} />
         );
         return (
             <ScrollView>
@@ -32,5 +32,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
+        padding: 15
     },
 });

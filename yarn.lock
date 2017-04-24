@@ -3090,6 +3090,14 @@ react-native-audio-player-recorder@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-native-audio-player-recorder/-/react-native-audio-player-recorder-2.0.0.tgz#356458423bb207d0c08816e7dda7cd7ce3f3a1fb"
 
+react-native-linear-gradient@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.0.0.tgz#7442c00e1fcd9fca329119dcbaf744d12bcd1b5a"
+
+react-native-navbar@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/react-native-navbar/-/react-native-navbar-1.7.1.tgz#de0e6f8c2156c7e984bb43c76732bd2437b7df0f"
+
 react-native-simple-modal@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/react-native-simple-modal/-/react-native-simple-modal-5.0.0.tgz#c1c6bbf122d5a2310f15f44c1a46854a3da4c5f1"
