@@ -5,14 +5,12 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
-
 import NavigationBar from 'react-native-navbar';
-
-import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import RecordingList from './RecordingList.js';
-import CreateRecording from './CreateRecording.js';
+import RecordingList from './components/RecordingList.js';
+import EditScreen from './EditScreen.js';
+import AddScreen from './AddScreen.js';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,50 +19,35 @@ const styles = StyleSheet.create({
   }
 });
 
-const titleConfig = {
-  title: 'Recordings',
-  tintColor: '#FFFFFF'
-};
-
 const statusBarStyle = {
   style: 'light-content'
 };
 
-const navBarStyle = {
-  paddingLeft: 10,
-  paddingRight: 10
-};
-
-export default class Main extends Component {
+export default class HomeScreen extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      isEditing: false
-    };
   }
 
   render() {
+    const titleConfig = {
+      title: 'Recordings',
+      tintColor: '#FFFFFF'
+    };
+
     const leftButtonConfig = {
       title: 'Edit',
       tintColor: '#FFFFFF',
-      handler: () => {
-        if (!this.state.isEditing) {
-          this.setState({
-            isEditing: true
-          });
-        } else {
-          this.setState({
-            isEditing: false
-          });
-        }
-      }
+      handler: () => this.props.navigator.push({
+        component: EditScreen
+      })
     };
 
     const rightButtonConfig = {
       title: 'Add',
       tintColor: '#FFFFFF',
-      handler: () => alert('add')
+      handler: () => this.props.navigator.push({
+        component: AddScreen
+      })
     };
 
     const generalType = {
@@ -87,9 +70,8 @@ export default class Main extends Component {
           rightButton={rightButtonConfig}
           tintColor="#1976D2"
           statusBar={statusBarStyle}
-          style={navBarStyle}
         />
-        <RecordingList isEditing={this.state.isEditing} />
+        <RecordingList />
       </View>
     );
   }

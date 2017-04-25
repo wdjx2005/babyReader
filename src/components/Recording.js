@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import {
+    Animated,
     StyleSheet,
     Text,
-    TouchableOpacity,
-    View
+    TouchableWithoutFeedback,
+    View,
+    Easing
 } from 'react-native';
 
 import { 
@@ -23,14 +25,25 @@ export default class Recording extends Component {
         }
     }
 
+    componentWillMount() {
+        this.animation = new Animated.Value(0);
+    }
+
+    componentDidMount() {
+        this.animation.setValue(0);
+        Animated.timing(this.animation, {
+            duration: 400,
+            toValue: 3,
+            ease: Easing.bounce
+        }).start();
+    }
+
     _onPlay = () => {
         AudioPlayer.play(this.props.path, { output: 'Phone' });
     }
 
     render() {
-        const isEditing = this.props.isEditing;
         let icon = null;
-        let deleteIcon = null;
         
         if (this.props.type === "Book") {
             icon = <Icon name="md-book" size={40} color="#1976D2" />;
@@ -40,21 +53,24 @@ export default class Recording extends Component {
             icon = <Icon name="md-mic" size={40} color="#1976D2" />;
         }
 
-        if (isEditing) {
-            deleteIcon = (
-                <TouchableOpacity style={styles.closeIconWrapper}>
-                    <Icon name="md-close" size={20} color="#FFFFFF" style={styles.closeIcon}/>
-                </TouchableOpacity>
-            );
+        const interpolated = this.animation.interpolate({
+            inputRange: [0, .5, 1, 1.5, 2, 2.5, 3],
+            outputRange: [0, -15, 0, -15, 0, -15, 0]
+        });
 
-        }
+        const animatedStyle = {
+            transform: [
+                { translateX: interpolated }
+            ]
+        };
         
         return (
-            <TouchableOpacity  style={styles.recording} onPress={this._onPlay}>
-                {deleteIcon}
-                {icon}
-                <Text style={styles.recordingText}>{this.props.name}</Text>
-            </TouchableOpacity>
+            <TouchableWithoutFeedback onPress={this._onPlay}>
+                <Animated.View style={[animatedStyle, styles.recording]}>
+                    {icon}
+                    <Text style={styles.recordingText}>{this.props.name}</Text>
+                </Animated.View>
+            </TouchableWithoutFeedback>
         );
     }
 }

@@ -8,7 +8,7 @@ import {
 
 import Recording from './Recording.js';
 
-import realm from './realm';
+import realm from '../realm';
 
 export default class RecordingList extends Component {
     render() {

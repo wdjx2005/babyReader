@@ -10,18 +10,16 @@ import {
     TouchableHighlight,
     View
 } from 'react-native';
-
 import { 
     AudioUtils,
     AudioPlayer, 
     AudioRecorder, 
 } from 'react-native-audio-player-recorder'
-
+import NavigationBar from 'react-native-navbar';
 import realm from './realm';
+import PlayButton from './components/PlayButton.js';
 
-import PlayButton from './PlayButton.js';
-
-export default class CreateRecording extends Component {  
+export default class AddScreen extends Component {  
     constructor(props) {
         super(props);
 
@@ -114,8 +112,34 @@ export default class CreateRecording extends Component {
             currentTime
         } = this.state;
 
+        const titleConfig = {
+            title: 'Add',
+            tintColor: '#FFFFFF'
+        };
+
+        const leftButtonConfig = {
+            title: 'Cancel',
+            tintColor: '#FFFFFF',
+            handler: () => this.props.navigator.pop()
+        };
+
+        const rightButtonConfig = {
+            title: 'Save',
+            tintColor: '#FFFFFF'
+        };
+
+        const statusBarStyle = {
+            style: 'light-content'
+        };
+
         return (
             <View style={styles.create}>
+                <NavigationBar
+                    leftButton={leftButtonConfig}
+                    rightButton={rightButtonConfig}
+                    title={titleConfig}
+                    tintColor="#1976D2"
+                    statusBar={statusBarStyle} />
                 <TextInput 
                     style={styles.input}
                     onChangeText={(name) => this.setState({name})}
@@ -159,9 +183,8 @@ const styles = StyleSheet.create({
     },
     create: {
         backgroundColor: '#263238',
+        flex: 1,
         height: '100%',
-        padding: 20,
-        paddingTop: 84,
     },
     button: {
         backgroundColor: '#1976D2',
