@@ -3,11 +3,10 @@ import {
     Animated,
     StyleSheet,
     Text,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
     View,
     Easing
 } from 'react-native';
-
 import { 
     AudioPlayer, 
 } from 'react-native-audio-player-recorder'
@@ -21,72 +20,57 @@ export default class Recording extends Component {
         this.state = {
             isPlaying: true,
             isPaused: false,
-            currentTime: 0
+            currentTime: 0,
+            isSelected: false
         }
     }
 
-    componentWillMount() {
-        this.animation = new Animated.Value(0);
-    }
-
-    componentDidMount() {
-        this.animation.setValue(0);
-        Animated.timing(this.animation, {
-            duration: 400,
-            toValue: 3,
-            ease: Easing.bounce
-        }).start();
-    }
-
-    _onPlay = () => {
-        AudioPlayer.play(this.props.path, { output: 'Phone' });
+    _onSelect = () => {
+        if ( this.props.isEditing ) {
+            this.setState({
+                isSelected: !this.state.isSelected
+            });
+        } else {
+            AudioPlayer.play(this.props.path, { output: 'Phone' });
+        }
     }
 
     render() {
         let icon = null;
+        console.log(this.state.isSelected)
         
         if (this.props.type === "Book") {
-            icon = <Icon name="md-book" size={40} color="#1976D2" />;
+            icon = <Icon name="md-book" size={25} color="#FFFFFF" style={styles.recordingIcon} />;
         } else if ( this.props.type === "Song") {
-            icon = <Icon name="md-musical-notes" size={40} color="#1976D2" />;
+            icon = <Icon name="md-musical-notes" size={25} color="#FFFFFF" style={styles.recordingIcon} />;
         } else {
-            icon = <Icon name="md-mic" size={40} color="#1976D2" />;
+            icon = <Icon name="md-mic" size={25} color="#FFFFFF" style={styles.recordingIcon} />;
         }
-
-        const interpolated = this.animation.interpolate({
-            inputRange: [0, .5, 1, 1.5, 2, 2.5, 3],
-            outputRange: [0, -15, 0, -15, 0, -15, 0]
-        });
-
-        const animatedStyle = {
-            transform: [
-                { translateX: interpolated }
-            ]
-        };
         
         return (
-            <TouchableWithoutFeedback onPress={this._onPlay}>
-                <Animated.View style={[animatedStyle, styles.recording]}>
+            <View style={styles.recordingWrap}>
+                <TouchableOpacity onPress={this._onSelect} style={[styles.recording, this.state.isSelected && styles.isSelected]}>
                     {icon}
-                    <Text style={styles.recordingText}>{this.props.name}</Text>
-                </Animated.View>
-            </TouchableWithoutFeedback>
+                </TouchableOpacity>
+                <Text style={styles.recordingText}>{this.props.name}</Text>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    recording: {
-        alignItems: 'center',
-        backgroundColor: '#EEE',
-        borderRadius: 7,
-        height: 100,
-        marginBottom: 10,
-        padding: 15,
-        position: 'relative',
+    recordingWrap: {
         width: '48%',
     },
+    recording: {
+        backgroundColor: '#EEE',
+        borderRadius: 7,
+        padding: 10,
+        height: 125
+    },
     recordingText: {
+        marginBottom: 15,
+        marginTop: 3,
         textAlign: 'center'
     },
     closeIconWrapper: {
@@ -98,7 +82,8 @@ const styles = StyleSheet.create({
         right: -3,
         width: 20
     },
-    closeIcon: {
-        
+    isSelected: {
+        borderWidth: 4,
+        borderColor: '#333333'
     }
 });
