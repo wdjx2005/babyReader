@@ -38,6 +38,7 @@ const styles = {
         alignItems: 'center',
         backgroundColor: '#333',
         borderRadius: 30/2,
+        justifyContent: 'center',
         overflow: 'hidden',
         height: 30,
         width: 30

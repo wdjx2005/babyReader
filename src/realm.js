@@ -5,12 +5,13 @@ import Realm from 'realm';
 class Recording extends Realm.Object {}
 Recording.schema = {
     name: 'Recording',
+    primaryKey: 'formattedName',
     properties: {
         name: 'string',
         formattedName: 'string',
-        type: 'string',
-        path: 'string'
+        path: 'string',
+        type: 'string'
     },
 };
 
-export default new Realm({schema: [Recording], schemaVersion: 5});
+export default new Realm({schema: [Recording], schemaVersion: 8});

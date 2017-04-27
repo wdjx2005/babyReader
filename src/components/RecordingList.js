@@ -5,9 +5,7 @@ import {
     ScrollView,
     View
 } from 'react-native';
-
 import Recording from './Recording.js';
-
 import realm from '../realm';
 
 export default class RecordingList extends Component {
@@ -34,8 +32,8 @@ export default class RecordingList extends Component {
     }
 
     render() {
-        const recordings = this.state.recordings.map((recording) => 
-            <Recording name={recording.name} type={recording.type} path={recording.path} isEditing={this.props.isEditing} onDeleteUpdated={this._onRecordingDeleted} />
+        const recordings = this.state.recordings.map((recording) =>
+            <Recording key={recording.formattedName} name={recording.name} type={recording.type} path={recording.path} isEditing={this.props.isEditing} onDeleteUpdated={this._onRecordingDeleted} />
         );
         return (
             <ScrollView>

@@ -20,10 +20,9 @@ export default class Recording extends Component {
         super(props);
 
         this.state = {
-            isPlaying: true,
+            isPlaying: false,
             isPaused: false,
             currentTime: 0,
-            isSelected: false,
             isDeleted: false
         }
     }
@@ -41,35 +40,43 @@ export default class Recording extends Component {
     }
 
     _onSelect = () => {
-        if ( this.props.isEditing ) {
-            this.setState({
-                isSelected: !this.state.isSelected
-            });
-        } else {
-            AudioPlayer.play(this.props.path, { output: 'Phone' });
-        }
+        if ( this.props.isEditing )
+            return;
+        
+        AudioPlayer.play(this.props.path, { output: 'Phone' });
+
+        this.setState({
+            isPlaying: !this.state.isPlaying
+        });
     }
 
     render() {
         let icon = null;
         let deleteRecording = null;
+        let colors = null;
 
         if (this.props.isEditing) {
             deleteRecording = <DeleteRecording onDeleteClick={this._deleteRecording}/>;
         }
-        
-        if (this.props.type === "Book") {
-            icon = <Icon name="md-book" size={25} color="#FFFFFF" style={styles.recordingIcon} />;
-        } else if ( this.props.type === "Song") {
-            icon = <Icon name="md-musical-notes" size={25} color="#FFFFFF" style={styles.recordingIcon} />;
+
+        if (this.state.isPlaying) {
+            icon = <Icon name="ios-pause" size={75} color="#fff" />
         } else {
-            icon = <Icon name="md-mic" size={25} color="#FFFFFF" style={styles.recordingIcon} />;
+            icon = <Icon name="ios-play" size={75} color="#fff" />
+        }
+
+        if (this.props.type == 'book') {
+            colors = ['#36D1DC', '#5B86E5'];
+        } else if (this.props.type == 'song') {
+            colors = ['#FF512F', '#F09819'];
+        } else {
+            colors = ['#FF00CC', '#333399'];
         }
         
         return (
             <View style={[styles.recordingWrap, this.state.isDeleted && styles.isDeleted]}>
                 <TouchableOpacity onPress={this._onSelect}>
-                    <LinearGradient colors={['#FF512F', '#F09819']} style={[styles.recording, this.state.isSelected && styles.isSelected]}>
+                    <LinearGradient colors={colors} style={styles.recording}>
                         {icon}
                     </LinearGradient>
                 </TouchableOpacity>
@@ -85,7 +92,11 @@ const styles = StyleSheet.create({
         width: '48%',
     },
     recording: {
+        backgroundColor: 'transparent',
+        flex: 1,
+        alignItems: 'center',
         borderRadius: 7,
+        justifyContent: 'center',
         padding: 10,
         height: 150,
         shadowColor: '#222222',
@@ -101,14 +112,5 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         marginTop: 10,
         textAlign: 'center'
-    },
-    isSelected: {
-        shadowColor: '#222222',
-        shadowOffset: {
-            width: 5,
-            height: 5
-        },
-        shadowRadius: 5,
-        shadowOpacity: 0.7
     }
 });
