@@ -11,10 +11,31 @@ import Recording from './Recording.js';
 import realm from '../realm';
 
 export default class RecordingList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            recordings: null
+        }
+    }
+
+    componentWillMount() {
+        let recordingQuery = realm.objects('Recording');
+        this.setState({
+            recordings: recordingQuery
+        });
+    }
+
+    _onRecordingDeleted = () => {
+        console.log('updating recordings');
+        let updatedRecordingQuery = realm.objects('Recording');
+        this.setState({
+            recordings: updatedRecordingQuery
+        });
+    }
+
     render() {
-        const recordingQuery = realm.objects('Recording');
-        const recordings = recordingQuery.map((recording) => 
-            <Recording name={recording.name} type={recording.type} path={recording.path} isEditing={this.props.isEditing} />
+        const recordings = this.state.recordings.map((recording) => 
+            <Recording name={recording.name} type={recording.type} path={recording.path} isEditing={this.props.isEditing} onDeleteUpdated={this._onRecordingDeleted} />
         );
         return (
             <ScrollView>
