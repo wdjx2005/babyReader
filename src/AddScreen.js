@@ -19,6 +19,7 @@ import NavigationBar from 'react-native-navbar';
 import realm from './realm';
 import PlayButton from './components/PlayButton';
 import TypeButton from './components/TypeButton';
+import ErrorMessage from './components/ErrorMessage';
 
 export default class AddScreen extends Component {  
     constructor(props) {
@@ -30,7 +31,8 @@ export default class AddScreen extends Component {
             currentTime: 0,
             audioLength: 0,
             name: '',
-            type: null
+            type: null,
+            hasErrors: false
         };
 
         this.audioPath = AudioUtils.DocumentDirectoryPath;
@@ -102,9 +104,19 @@ export default class AddScreen extends Component {
                     type: type
                 });
             })
-        }
 
-        this.props.navigator.pop();
+            this.props.navigator.pop();
+        } else {
+            this.setState({
+                hasErrors: true
+            })
+
+            if (!this.state.name) {
+                this.setState({
+                    errorMessage: 'A name must be provided to save the recording.'
+                })
+            }
+        }
     }
 
     _renderButton(title, method) {
@@ -145,6 +157,11 @@ export default class AddScreen extends Component {
             style: 'light-content'
         };
 
+        let errorMessage = null;
+        if (this.state.hasErrors) {
+            errorMessage = <ErrorMessage show={this.state.hasErrors} message={this.state.errorMessage} />;
+        }
+
         return (
             <View style={styles.container}>
                 <NavigationBar
@@ -154,12 +171,13 @@ export default class AddScreen extends Component {
                     tintColor="#1976D2"
                     statusBar={statusBarStyle} />
                 <View style={styles.contentContainer}>
+                    {errorMessage}
                     <View style={styles.inputContainer}>
                         <TextInput 
                             style={styles.input}
                             onChangeText={(name) => this.setState({name})}
                             value={this.state.name}
-                            placeholder="Enter a title..."
+                            placeholder="Enter a name..."
                             placeholderTextColor="#555555"
                         />
                     </View>

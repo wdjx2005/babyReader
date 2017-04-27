@@ -22,8 +22,6 @@ export default class TypeButton extends Component {
 
     render() {     
         let formattedName = this.props.title.toLowerCase();   
-        console.log(formattedName);
-        console.log(this.props.selectedType);
         return (
             <TouchableOpacity onPress={this._onSelect} style={styles.typeButtonWrapper}>
                 <LinearGradient colors={this.props.color} style={[styles.typeButton, formattedName == this.props.selectedType && styles.isSelected]}>
