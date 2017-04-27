@@ -137,7 +137,7 @@ export default class AddScreen extends Component {
         } = this.state;
 
         const titleConfig = {
-            title: 'Add',
+            title: 'Record',
             tintColor: '#FFFFFF'
         };
 
@@ -168,7 +168,7 @@ export default class AddScreen extends Component {
                     leftButton={leftButtonConfig}
                     rightButton={rightButtonConfig}
                     title={titleConfig}
-                    tintColor="#1976D2"
+                    tintColor="#333333"
                     statusBar={statusBarStyle} />
                 <View style={styles.contentContainer}>
                     {errorMessage}

@@ -51,7 +51,7 @@ export default class EditScreen extends Component {
         <NavigationBar
           title={titleConfig}
           leftButton={leftButtonConfig}
-          tintColor="#1976D2"
+          tintColor="#333333"
           statusBar={statusBarStyle} />
         <RecordingList isEditing="true" onDelete={this._deleteRecordings} />
       </View>

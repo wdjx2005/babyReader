@@ -69,7 +69,7 @@ export default class HomeScreen extends Component {
           title={titleConfig}
           leftButton={leftButtonConfig}
           rightButton={rightButtonConfig}
-          tintColor="#1976D2"
+          tintColor="#333333"
           statusBar={statusBarStyle}
         />
         <RecordingList />

@@ -18,11 +18,10 @@ export default class ErrorMessage extends Component {
 
 const styles = StyleSheet.create({
     errorMessage: {
-        backgroundColor: 'red',
+        backgroundColor: '#f44336',
         borderRadius: 4,
-        padding: 5,
-        marginBottom: 10,
-        marginTop: 10
+        padding: 10,
+        marginVertical: 10
     },
     errorMessageText: {
         color: '#FFFFFF'
